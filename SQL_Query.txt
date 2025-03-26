@@ -1,0 +1,34 @@
+
+/* 1. Query*/
+select d.name,avg(e.age)
+from employees e
+join departments d on e.department_id= d.id
+group by d.name;
+
+/* 2. Query*/
+
+select d.name, count(d.name)
+from employees e
+join departments d on e.department_id= d.id
+where e.age>40
+group by d.name
+order by count(*) desc
+limit 1;
+
+
+/* 3. Query*/
+
+select count(*) as emp_cnt
+from employees 
+where joining_date>=DATE_SUB(curdate(), interval 100 day);
+
+/* 4. Query*/
+
+update employees
+set joining_date ='2025-03-25'
+where department_id= (select id from departments where name= 'HR');
+
+/* 5. Query*/
+select count(*) as emp_cnt
+from employees 
+where joining_date>=DATE_SUB(curdate(), interval 100 day);
